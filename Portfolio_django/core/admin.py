@@ -6,7 +6,4 @@ admin.site.register(Profile)
 admin.site.register(Experience)
 admin.site.register(Projects)
 
-@admin.register(ProjectImages)
-class ProjectImagesAdmin(admin.ModelAdmin):
-    form = ProjectImagesForm
 # Register your models here.

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/static/img/Favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link  rel="stylesheet" href="/static/admin/admin.css"/>
+    <link  rel="stylesheet" href="/static/admin/clock.css"/>
+    <link  rel="stylesheet" href="/static/admin/stars.css"/>
+    <link  rel="stylesheet" href="/static/admin/table.css"/>
+</head>
+<body>
+<div class="sidebar">
+  <div class="sidebar__subsections">
+    <div class="sidebar__subsections-brand">Purizumo ThreeJS Portfolio</div>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      {% if profile %}
+      <li><a href="{% url 'profile-update' profile.pk %}">Profile</a></li>
+      {% else %}
+      <li><a href="{% url 'profile-create' %}">Profile</a></li>
+      {% endif %}
+      
+      <li><a href="{% url 'exp-create' %}">Experience</a></li>
+
+      <li><a href="{% url 'project-create' %}">Projects</a></li>
+
+      <li><a href="{% url 'skills' %}">Skills</a></li>
+    </ul>
+  </div>
+</div>
+<div class="page">
+  
+  <div class="header" style="justify-content: center;">
+    <div class="clock">
+    <div class="hours">
+        <div class="first">
+        <div class="number">0</div>
+        </div>
+        <div class="second">
+        <div class="number">0</div>
+        </div>
+    </div>
+    <div class="tick">:</div>
+    <div class="minutes">
+        <div class="first">
+        <div class="number">0</div>
+        </div>
+        <div class="second">
+        <div class="number">0</div>
+        </div>
+    </div>
+    <div class="tick">:</div>
+    <div class="seconds">
+        <div class="first">
+        <div class="number">0</div>
+        </div>
+        <div class="second infinite">
+        <div class="number">0</div>
+        </div>
+    </div>
+    </div> 
+  </div>
+  
+  <div class="content">
+    <div class="title" id="title-bar">
+        <div class="title__text">
+            <span>Editing Content</span>
+            <h1>ようこそ</h1>
+        </div>
+        <div class="header__date">
+            <span id="date"></span>
+        </div>
+        <div class="header__user">
+            Hello, Admin <svg class="lnr lnr-cog icon"><use xlink:href="#lnr-cog"></use></svg>
+        </div>
+    </div>
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="content__main">
+      <div class="content__main-page">
+        <div class="box">
+          <div class="container">
+              <div class="content">
+                  {% block content %}
+                    <section>
+                      <div class="profile profile-default">
+                        {% if profile %}
+                        <div class="profile__image"><img src="{{profile.picture.url}}" alt="Doggo"/></div>
+                        <div class="profile__info">
+                          <h3>Name</h3>
+                          <p class="profile__info__extra">{{profile.about_me}}</p>
+                        </div>
+                        <div class="profile__stats">
+                          <p class="profile__stats__title">Number</p>
+                          <h5 class="profile__stats__info">{{profile.number}}</h5>
+                        </div>
+                        <div class="profile__stats">
+                          <p class="profile__stats__title">Email</p>
+                          <h5>{{profile.email}}</h5>
+                        </div>
+                        <div class="profile__stats">
+                          <p class="profile__stats__title">Social</p>
+                          <h5 class="profile__stats__info">{{profile.social_link|truncatechars:50}}</h5>
+                        </div>
+                        {% endif %}
+                      </div>
+                    </section>
+                  {% endblock %}
+              </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+</body>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="/static/admin/admin.js"></script>
+  <script src="/static/admin/clock.js"></script>
+</html>
+

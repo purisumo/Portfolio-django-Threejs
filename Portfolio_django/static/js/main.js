@@ -98,7 +98,7 @@ const finalComposer = new EffectComposer( renderer );
 	finalComposer.addPass( outputPass );
 
 //Glass image
-const imageTexture = new THREE.TextureLoader().load('/static/img/avatar.png');
+const imageTexture = new THREE.TextureLoader().load('media/profile/Avatar.png');
 
 // Create the glass material with envMap set to the image mesh
 const glassMaterial = new THREE.MeshPhysicalMaterial({
@@ -331,8 +331,9 @@ earthGroup.position.z = 2;
 // jeff.position.z = -5;
 // jeff.position.x = 2;
 
-glassMesh.position.z = -5;
-glassMesh.position.x = 4;
+glassMesh.position.z = -4;
+glassMesh.position.x = 3;
+glassMesh.rotation.y += 1;
 // Scroll Animation
 
 function moveCamera() {
@@ -341,10 +342,10 @@ function moveCamera() {
   // moon.rotation.y += 0.075;
   // moon.rotation.z += 0.05;
 
-  glassMesh.rotation.y += 0.01;
+  // glassMesh.rotation.y += 0.01;
   // glassMesh.rotation.z += 0.01;
 
-  camera.position.z = t * -0.01;
+  camera.position.z = t * -0.007;
   camera.position.x = t * -0.0002;
   camera.rotation.y = t * -0.0002;
 }
@@ -362,11 +363,11 @@ function animate() {
   const x = radius * Math.cos(angle);
   const z = radius * Math.sin(angle);
   
-  moon.rotation.x += 0.005;
+  moon.rotation.y += 0.003;
 
   // Rotate the glass mesh
-  glassMesh.rotation.y += 0.001;
-  glassMesh.position.y = Math.sin(Date.now() * 0.001) * 1;
+  // glassMesh.rotation.y += 0.001;
+  glassMesh.position.y = Math.sin(Date.now() * 0.0005) * 1;
 
   earthMesh.rotation.y += 0.002;
   lightsMesh.rotation.y += 0.002;

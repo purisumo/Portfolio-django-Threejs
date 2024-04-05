@@ -1,25 +1,65 @@
 from django import forms
-from .models import Profile, Experience, Projects, ProjectImages
+from django.forms import inlineformset_factory
+from .models import *
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['fname', 'miname', 'lname', 'email', 'number', 'social_link', 'about_me']
+        fields = ['fname', 'miname', 'lname', 'email', 'number', 'picture', 'social_link', 'role', 'about_me']
+        labels = {
+            'fname': 'First Name',
+            'miname': 'Middle Name',
+            'lname': 'Last Name',
+            'number': 'Phone Number',
+            'picture': 'Profile Picture',
+            'social_link': 'Social Link',
+            'role': 'Role',
+            'about_me': 'About Me',
+        }
 
 class ExperienceForm(forms.ModelForm):
     class Meta:
         model = Experience
         fields = ['experience']
+        labels = {
+            'experience': 'Experience'
+        }
 
 class ProjectsForm(forms.ModelForm):
     class Meta:
         model = Projects
         fields = ['project_name', 'description', 'link']
+        labels = {
+            'project_name': 'Project Name',
+            'description': 'Description',
+            'link': 'Link',
+        }
 
 class ProjectImagesForm(forms.ModelForm):
     class Meta:
         model = ProjectImages
-        fields = ['image', 'project']  # Specify the fields to be displayed in the form
+        fields = ['image']
+        labels = {
+            'image': 'Image'
+        }
         widgets = {
-            'image': forms.ClearableFileInput(attrs={'multiple': True}),  # Allow multiple file selection
+            'image': forms.FileInput(attrs={'multiple': True})
+        }
+
+class LanguageSkillForm(forms.ModelForm):
+    class Meta:
+        model = Language
+        fields = ['name', 'level']
+        labels = {
+            'name': 'Language name',
+            'level': 'Proficiency Level (1-100)',
+        }
+
+class FrameworkSkillForm(forms.ModelForm):
+    class Meta:
+        model = Framework
+        fields = ['name', 'level']
+        labels = {
+            'name': 'Framework Name',
+            'level': 'Proficiency Level (1-100)',
         }

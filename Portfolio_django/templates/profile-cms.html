@@ -1,0 +1,105 @@
+{% extends 'dashboard/admin.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if experience %}
+<h1>Experience List Table </h1>
+<HR>
+<table class="rwd-table">
+  <tr>
+    <th>Experience</th>
+  </tr>
+  {% for exp in experience %}
+  <tr>
+    <td data-th="Movie Title">{{exp.experience|truncatechars:50}}</td>
+    <td class="container topBotomBordersOut" data-th="Year"><a href="{% url 'exp-update' exp.pk %}" onclick="return confirm('Are you sure you want to Edit?')">Edit</a></td>
+    <td class="container topBotomBordersOut" data-th="Gross"><a href="{% url 'exp-delete' exp.pk %}" onclick="return confirm('Are you sure you want to Delete?')">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<hr>
+{% elif projects %}
+<h1>Projects List Table </h1>
+<HR>
+<table class="rwd-table">
+  <tr>
+    <th>Projects</th>
+  </tr>
+  {% for proj in projects %}
+  <tr>
+    <td data-th="Movie Title">{{proj.project_name|truncatechars:50}}</td>
+    <td class="container topBotomBordersOut" data-th="Year"><a href="{% url 'project-update' proj.pk %}" onclick="return confirm('Are you sure you want to Edit?')">Edit</a></td>
+    <td class="container topBotomBordersOut" data-th="Gross"><a href="{% url 'project-delete' proj.pk %}" onclick="return confirm('Are you sure you want to Delete?')">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<hr>
+{% endif %}
+
+{% if language and framework %}
+<div style="columns: 300px 2">
+
+<h1>Language Skills List Table </h1>
+<HR>
+<table class="rwd-table">
+  <tr>
+    <th>Language</th>
+    <th>Level</th>
+  </tr>
+  {% for lang in language %}
+  <tr>
+    <td data-th="Movie Title">{{lang.name|truncatechars:50}}</td>
+    <td data-th="Movie Title">{{lang.level|truncatechars:50}}</td>
+    <td class="container topBotomBordersOut" data-th="Year"><a href="{% url 'language_update' lang.pk %}" onclick="return confirm('Are you sure you want to Edit?')">Edit</a></td>
+    <td class="container topBotomBordersOut" data-th="Gross"><a href="{% url 'language_delete' lang.pk %}" onclick="return confirm('Are you sure you want to Delete?')">Delete</a></td>
+  </tr>
+  {% endfor %}
+  <button type="submit"><a href="{% url 'language_skill' %}" >Add Language</a></button>
+</table>
+<h1>Frameworks List Table </h1>
+<HR>
+<table class="rwd-table">
+  <tr>
+    <th>Frameworks</th>
+    <th>Level</th>
+  </tr>
+  {% for frame in framework %}
+  <tr>
+    <td data-th="Movie Title">{{frame.name|truncatechars:50}}</td>
+    <td data-th="Movie Title">{{frame.level|truncatechars:50}}</td>
+    <td class="container topBotomBordersOut" data-th="Year"><a href="{% url 'framework_update' frame.pk %}" onclick="return confirm('Are you sure you want to Edit?')">Edit</a></td>
+    <td class="container topBotomBordersOut" data-th="Gross"><a href="{% url 'framework_delete' frame.pk %}" onclick="return confirm('Are you sure you want to Delete?')">Delete</a></td>
+  </tr>
+  {% endfor %}
+  <button type="submit"><a href="{% url 'framework_skill' %}">Add Framework</a></button>
+</table>
+</div>
+{% else %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field|add_class:"form-control" }}
+    </div>
+    {% endfor %}
+    {% if image_form %}
+    {% for field in image_form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field|add_class:"form-control-file" }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% if project %}
+    <p>
+      Choose to Modify Image or Leave Blank to use Previous Image
+    </p>
+    {% endif %}
+    <button type="submit">Save</button>
+</form>
+{% endif %}
+{% endblock %}

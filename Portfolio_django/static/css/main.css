@@ -1,6 +1,7 @@
 @import url("https://use.typekit.net/jmk3xov.css");
 
-canvas {
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Orbitron:wght@400..900&family=Poppins:wght@300&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+canvas.Three {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,8 +14,15 @@ html,body{
 :root {
   --dark-bg: rgba(15, 15, 15, 0.75);
   --spacing: 350px;
+  
+  background-color: #1010101b;
+  box-sizing: border-box;
+  border: 1px solid rgb(47, 255, 217);
+  border-radius: 5px;
+  box-shadow: 0 20px 50px #000;
 
-  font-family: brandon-grotesque, sans-serif;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
@@ -34,7 +42,8 @@ main {
 }
 
 h1, h2, h3, blockquote {
-  font-family: elevon, sans-serif;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
@@ -76,7 +85,11 @@ h1.retroshadow {
 }
 
   header {
-    background: var(--dark-bg);
+    background-color: #10101050;
+    box-sizing: border-box;
+    border: 1px solid rgb(47, 255, 217);
+    border-radius: 5px;
+    box-shadow: 0 20px 50px #000;
     grid-column: 2 / span 5;
     font-size: 2.5rem;
     padding: 2rem;
@@ -86,7 +99,11 @@ h1.retroshadow {
   section {
     grid-column: 2 / 8;
     padding: 1rem;
-    background: var(--dark-bg);
+    background-color: #10101025;
+    box-sizing: border-box;
+    border: 1px solid rgb(47, 255, 217);
+    border-radius: 5px;
+    box-shadow: 0 20px 50px #000;
     font-size: 1.25rem;
     line-height: 1.5;
     margin-bottom: var(--spacing);
@@ -95,12 +112,20 @@ h1.retroshadow {
   blockquote {
     margin: 0;
     padding: 0;
-    grid-column: 2 / span 9;
+    grid-column: 2 / span 10;
   }
 
+  hr {
+      background-color: #1010101b;
+      box-sizing: border-box;
+      border: 1px solid rgb(47, 255, 217);
+      border-radius: 5px;
+      box-shadow: 0 20px 50px #000;
+  }
+  
   blockquote p {
-    color: black;
-    background-color: rgba(255, 255, 255, 0.85);;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 113, 77, 0.167);
     font-size: 4rem;
     display: inline;
     line-height: 2;
@@ -121,7 +146,8 @@ h1.retroshadow {
     color: white;
     font-size: 100px;
     font-weight: bold;
-    font-family: sans-serif;
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
     text-transform: uppercase;
     position: relative;
     user-select: none;
@@ -283,3 +309,117 @@ h1.retroshadow {
  box-shadow: inset 0 0 0 200px rgba(255,255,255,0.05);
  filter: blur(10px);
 }
+
+
+.center {
+  width: 100%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  background-color: #1010101b;
+  box-sizing: border-box;
+  /* border: 1px solid rgb(47, 255, 217); */
+  border-radius: 5px;
+  box-shadow: 0 20px 50px #000;
+}
+
+#h1 {
+  font-size: 30px;
+  margin: 10px 0 30px 0;
+  padding: 0;
+  color: #000000;
+  font-family: "Source Code Pro", monospace;
+  text-align: center;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: animateText 2s infinite;
+}
+
+@keyframes animateText {
+  0% {
+    text-shadow: 0 0 0px rgb(47, 255, 189);
+  }
+  25% {
+    text-shadow: 0 0 2px rgb(47, 255, 189);
+  }
+  50% {
+    text-shadow: 0 0 5px rgb(47, 255, 189);
+  }
+  75% {
+    text-shadow: 0 0 7px rgb(47, 255, 189);
+  }
+  100% {
+    text-shadow: 0 0 10px rgb(47, 255, 189);
+  }
+}
+.skill-container {
+  margin: 20px 0 0 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.skill-container p {
+  margin: 0 0 5px 0;
+  color: rgb(47, 255, 189);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.skill-container p:nth-child(2) {
+  float: right;
+  position: relative;
+  top: -26px;
+}
+
+.skill-bar {
+  box-sizing: border-box;
+  padding: 4px;
+  border: 1px solid rgb(47, 255, 189);
+  border-radius: 3px;
+}
+
+.skill-level {
+  height: 5px;
+  background-color: rgb(47, 255, 189);
+  border-radius: 1px;
+  animation: skill-animation 10s;
+  animation-fill-mode: both; 
+}
+
+@keyframes skill-animation {
+    0% { width: 0; }
+    100% { width: calc(var(--level) * 1%); }
+}
+
+@media only screen and (max-width: 950px) {
+  #h1 {
+    font-size: 25px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  #h1 {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  #h1 {
+    font-size: 15px;
+  }
+}
+
+  .footer {
+        background-color: #1010101b;
+        box-sizing: border-box;
+        border: 1px solid rgb(47, 255, 217);
+        border-radius: 5px;
+        box-shadow: 0 20px 50px #000;
+        display:block;
+        height:0;
+        transform-origin: 50% 50%;
+        margin:0;
+        margin-top: 10vw;
+        padding: 0;
+  }
