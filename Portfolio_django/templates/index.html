@@ -7,16 +7,38 @@
         <link rel="icon" type="image/svg+xml" href="/static/img/Favicon.png" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link type="text/css" rel="stylesheet" href="/static/css/main.css">
+        <link type="text/css" rel="stylesheet" href="/static/css/loader.css">
+
+        <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.1/dist/aos.css" />
+        <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.1/dist/aos.js"></script>
+
       </head>
+
 	<body>
+    
+    <div id="loader-wrapper">
+      <div class="Loader" data-text="Loading">
+        <span class="Loader__Circle"></span>
+        <span class="Loader__Circle"></span>
+        <span class="Loader__Circle"></span>
+        <span class="Loader__Circle"></span>
+      </div>
+    </div>
+
+<!-- <div class="progress-bar">
+<div class="progress-bar-inner"></div>
+<div class="stars"></div>
+<div class="planet"></div>
+</div> -->
+<div id="content">
         <canvas id="bg" class="Three"></canvas>  
-<main>
+<main data-aos="fade-up">
         <div>
         <a class="arrow down" style="margin-left: 50vw;" id="hides">Down</a>
       </div>
 </main>
 <main>
-      <header style="margin-bottom: 50vw;">
+      <header style="margin-bottom: 50vw;" data-aos="fade-up">
       <div class="neon" style="background-color: black;">
         <span class="text-neon" data-text="{{profile.fname}} {{profile.miname}}.">{{profile.fname}} {{profile.miname}}.</span>
         <span class="gradient"></span>
@@ -27,11 +49,11 @@
       </div>
       </header>
 
-      <blockquote>
+      <blockquote data-aos="fade-right">
         <p>ABOUT ME 😺</p>
       </blockquote>
 
-      <section>
+      <section data-aos="fade-right">
         <h2>{{profile.role}}👨‍💻</h2>
         <p>
           {{profile.about_me}}
@@ -39,7 +61,7 @@
 
       </section>
 
-      <section class="light">
+      <section class="light" data-aos="fade-right">
         <h2 style="text-decoration: underline;">Pojects 🌌</h2><br>
         {% for pro in projects %}
         <p>
@@ -72,12 +94,12 @@
         {% endfor %}
       </section>
 
-      <blockquote>
+      <blockquote data-aos="fade-up">
         <p>“Due tomorrow? Do tomorrow.”</p><br>
         <p>(☞ﾟヮﾟ)☞ </p>
       </blockquote>
 
-      <section class="left">
+      <section class="left" data-aos="fade-left">
         <h2>Experience 💾</h2>
         {% for exp in experience %}
         <h3>Experience {{forloop.counter}}</h3>
@@ -88,7 +110,7 @@
 
       </section>
 
-      <section >
+      <section data-aos="fade-right">
         <div class="center">
             <h1 id="h1">My Language Proficiency</h1>
             <div class="skill-container">
@@ -104,14 +126,14 @@
         </div>
       </section>
 
-      <section class="left">
+      <section class="left" data-aos="fade-left">
         <div>
             <h1 id="h1">My Framework Skill's</h1>
           <canvas id="myChart" width="300" height="300"></canvas>
         </div>
       </section>
       <div></div>
-      <blockquote style="margin: 0; padding: 0; width: 100%;">
+      <blockquote style="margin: 0; padding: 0; width: 100%;" data-aos="zoom-in">
             <footer class="footer">
                 <div class="card" style="background: none; align-items: center;">
                   <h5 class="card-header" style="font-size: 32px; color: aliceblue;">Contact Me</h5>
@@ -200,6 +222,9 @@
     <script type="module" src="/static/js/main.js"></script>
     
     <script>
+      AOS.init({
+        duration: 3000,
+      })
       function hideElementOnScroll(hides, scrollThreshold) {
       const element = document.getElementById("hides");
 
@@ -225,6 +250,24 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     </script>
+</div>
+</body>
 
-	</body>
+  <script>
+  document.onreadystatechange = function () {
+    var width = 0;
+    var interval = setInterval(function() {
+      if (document.readyState === 'complete') {
+        clearInterval(interval);
+        // Hide the loader when the loading is complete
+        document.getElementById('loader-wrapper').style.display = 'none';
+        document.getElementById("content").style.display = "block";
+      } else {
+        // width += 1;
+        // document.querySelector('.progress-bar-inner').style.width = width + '%';
+      }
+    }, 50); // Adjust the interval based on your preference
+  };
+
+  </script>
 </html>
