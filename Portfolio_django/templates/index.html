@@ -110,7 +110,7 @@
 
       </section>
 
-      <section data-aos="fade-right">
+      <section data-aos="fade-right" id="lang-skill">
         <div class="center">
             <h1 id="h1">My Language Proficiency</h1>
             <div class="skill-container">
@@ -232,7 +232,6 @@
         console.error(`Element with ID '${hides}' not found.`);
         return;
       }
-
       window.addEventListener('scroll', function () {
         if (window.scrollY > scrollThreshold) {
           element.style.display = 'none';
@@ -241,17 +240,14 @@
         }
       });
       }
-
-      // Call the function with the element ID and scroll threshold
       hideElementOnScroll('elementToHide', 100);
-
       function scrollToTop() {
-      // Scroll to the top of the page with smooth animation
       window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     </script>
 </div>
 </body>
+
 
   <script>
   document.onreadystatechange = function () {
@@ -259,15 +255,13 @@
     var interval = setInterval(function() {
       if (document.readyState === 'complete') {
         clearInterval(interval);
-        // Hide the loader when the loading is complete
-        document.getElementById('loader-wrapper').style.display = 'none';
-        document.getElementById("content").style.display = "block";
-      } else {
-        // width += 1;
-        // document.querySelector('.progress-bar-inner').style.width = width + '%';
+        document.getElementById('loader-wrapper').style.opacity = 0;
+        document.getElementById("content").style.opacity = 1;
+        setTimeout(function() {
+          document.getElementById('loader-wrapper').style.display = 'none';
+        }, 2000);
       }
-    }, 50); // Adjust the interval based on your preference
+    }, 50);
   };
-
   </script>
 </html>

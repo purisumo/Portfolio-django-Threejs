@@ -149,9 +149,21 @@ def project_update(request, pk):
     if request.method == 'POST':
         form = ProjectsForm(request.POST, instance=project)
         image_form = ProjectImagesForm(request.POST, request.FILES, instance=project)
+        print(image_form)
         if form.is_valid() and image_form.is_valid():
-            form.save()
-            image_form.save()
+            project = form.save(commit=False)
+            project.save() 
+
+            project_images = ProjectImages.objects.filter(project=project)
+            for image in project_images:
+                file_path = os.path.join(settings.MEDIA_ROOT, str(image.image))
+                if default_storage.exists(file_path):
+                    default_storage.delete(file_path)
+                image.delete()
+                
+            for image in request.FILES.getlist('image'):
+                ProjectImages.objects.create(image=image, project=project)
+
             return redirect('project-create')
     else:
         form = ProjectsForm(instance=project)
